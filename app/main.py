@@ -1,8 +1,10 @@
+# app/main.py
 from fastapi import FastAPI
+from app.core.config import settings
+from app.db.session import engine
 
-app = FastAPI()
+app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to VaultPay API "}
-
+def root():
+    return {"msg": "VaultPay is up"}
