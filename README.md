@@ -1,0 +1,3 @@
+- Created project structure for VaultPay (FastAPI-based fintech API).
+- Added config management (`core/config.py`).
+- Set up database session (`db/session.py`) with SQLAlchemy.
