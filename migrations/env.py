@@ -6,7 +6,7 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from app.database import Base
-from app.models import user   # import all models so Alembic sees them
+from app.models import user, payment   # import all models so Alembic sees them
 from app.config import DATABASE_URL  # <-- use .env config
 
 # Alembic Config object

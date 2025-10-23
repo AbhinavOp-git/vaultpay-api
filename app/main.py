@@ -1,15 +1,19 @@
 # app/main.py
 from fastapi import FastAPI
 from app.core.config import settings
-from app.api.v1.endpoints import users  # 👈 import your first router
+from app.api import api  # central router that includes all endpoints
 
-app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
+# Create FastAPI instance
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    version=settings.VERSION,
+    description="VaultPay API — Secure payment & user management backend"
+)
 
 # Root health check
 @app.get("/")
 def root():
-    return {"msg": "VaultPay is up"}
+    return {"msg": "VaultPay API is up and running 🚀"}
 
-# Include versioned routes
-app.include_router(users.router, prefix="/api/v1/users", tags=["users"])
-
+# Include all versioned routes
+app.include_router(api.router, prefix="/api/v1")
