@@ -9,6 +9,7 @@ VaultPay is a **production-grade backend API** built using **FastAPI, PostgreSQL
 This project is being developed step by step — from core user management, authentication, database modeling, to payments integration — following industry-level DevOps and backend engineering principles.
 
 ---
+---
 
 ## 🧭 Table of Contents
 - [🚀 Overview](#-overview)
