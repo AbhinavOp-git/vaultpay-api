@@ -254,7 +254,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-> ⚡ *"VaultPay isn’t just a project — it’s a journey of building production-grade systems with real engineering discipline."*
+> ⚡ *"VaultPay isn’t just a project — it’s a journey of building production grade systems with real engineering discipline."*
 
 
 
