@@ -1,73 +1,70 @@
-
----
-
-```markdown
 # 💳 VaultPay API — Secure Payment & User Management Backend
 
-VaultPay is a **production-grade backend API** built using **FastAPI, PostgreSQL, SQLAlchemy, and JWT authentication**, designed to simulate a real-world **fintech-grade payment management system**.  
+VaultPay is a **production-grade backend API** built using **FastAPI, PostgreSQL, SQLAlchemy, and JWT authentication**, designed to simulate a real-world **fintech-grade payment management system**.
 
 This project is being developed step by step — from core user management, authentication, database modeling, to payments integration — following industry-level DevOps and backend engineering principles.
 
 ---
----
 
-## 🧭 Table of Contents
-- [🚀 Overview](#-overview)
-- [🧱 Tech Stack](#-tech-stack)
-- [🧩 Project Architecture](#-project-architecture)
-- [👤 User Management & Authentication](#-user-management--authentication)
-- [💳 Payment System](#-payment-system)
-- [🧠 Concepts Learned](#-concepts-learned)
-- [🐞 Errors Encountered & Fixes](#-errors-encountered--fixes)
-- [⚙️ Setup & Run Locally](#️-setup--run-locally)
-- [🌐 Swagger API Docs](#-swagger-api-docs)
-- [📘 Next Roadmap](#-next-roadmap)
-- [👨‍💻 Author](#-author)
+## 🦭 Table of Contents
+
+* [🚀 Overview](#-overview)
+* [🧱 Tech Stack](#-tech-stack)
+* [🯩 Project Architecture](#-project-architecture)
+* [👤 User Management & Authentication](#-user-management--authentication)
+* [💳 Payment System](#-payment-system)
+* [🤠 Concepts Learned](#-concepts-learned)
+* [🐞 Errors Encountered & Fixes](#-errors-encountered--fixes)
+* [⚙️ Setup & Run Locally](#%EF%B8%8F-setup--run-locally)
+* [🌐 Swagger API Docs](#-swagger-api-docs)
+* [📘 Next Roadmap](#-next-roadmap)
+* [👨‍💻 Author](#-author)
 
 ---
 
 ## 🚀 Overview
 
 **VaultPay** is a backend system that manages:
-- Secure **user registration & login** with password hashing  
-- **JWT token-based authentication** (OAuth2 Bearer Token)
-- **Payment creation** linked to users (relational database)
-- Integration with **PostgreSQL** using **SQLAlchemy ORM**
-- **Alembic migrations** for schema version control  
-- Interactive documentation via **Swagger UI**
+
+* Secure **user registration & login** with password hashing
+* **JWT token-based authentication** (OAuth2 Bearer Token)
+* **Payment creation** linked to users (relational database)
+* Integration with **PostgreSQL** using **SQLAlchemy ORM**
+* **Alembic migrations** for schema version control
+* Interactive documentation via **Swagger UI**
 
 By the end of this phase, the API can:
-1. Create users securely  
-2. Authenticate users using JWT tokens  
-3. Fetch authenticated user info (`/me` route)  
-4. Create and store payments for users  
+
+1. Create users securely
+2. Authenticate users using JWT tokens
+3. Fetch authenticated user info (`/me` route)
+4. Create and store payments for users
 5. Retrieve all payments from DB
 
 ---
 
 ## 🧱 Tech Stack
 
-| Category | Tools / Libraries |
-|-----------|------------------|
-| **Language** | Python 3.11 |
-| **Framework** | FastAPI |
-| **Database** | PostgreSQL |
-| **ORM** | SQLAlchemy |
-| **Migrations** | Alembic |
-| **Auth & Security** | JWT (via `python-jose`), bcrypt (via `passlib`) |
-| **Validation** | Pydantic |
-| **Environment Management** | Poetry |
-| **API Docs** | Swagger UI (auto-generated) |
-| **Testing Tool** | cURL / Swagger / Postman |
+| Category                   | Tools / Libraries                               |
+| -------------------------- | ----------------------------------------------- |
+| **Language**               | Python 3.11                                     |
+| **Framework**              | FastAPI                                         |
+| **Database**               | PostgreSQL                                      |
+| **ORM**                    | SQLAlchemy                                      |
+| **Migrations**             | Alembic                                         |
+| **Auth & Security**        | JWT (via `python-jose`), bcrypt (via `passlib`) |
+| **Validation**             | Pydantic                                        |
+| **Environment Management** | Poetry                                          |
+| **API Docs**               | Swagger UI (auto-generated)                     |
+| **Testing Tool**           | cURL / Swagger / Postman                        |
 
 ---
 
-## 🧩 Project Architecture
+## 🯩 Project Architecture
 
 The project follows a clean and scalable folder structure:
 
 ```
-
 vaultpay/
 │
 ├── app/
@@ -85,7 +82,6 @@ vaultpay/
 ├── scripts/                  → Automation scripts (insert test users, etc.)
 ├── pyproject.toml            → Poetry dependencies
 └── README.md                 → Project documentation
-
 ```
 
 This design allows **modular expansion** — new services or APIs can be plugged in easily.
@@ -95,19 +91,20 @@ This design allows **modular expansion** — new services or APIs can be plugged
 ## 👤 User Management & Authentication
 
 ### ✅ Implemented Features:
-- User registration at `/api/v1/users/`
-- Secure password hashing with **bcrypt**
-- JWT login via `/api/v1/auth/login`
-- Protected route `/api/v1/users/me` that requires a Bearer token
+
+* User registration at `/api/v1/users/`
+* Secure password hashing with **bcrypt**
+* JWT login via `/api/v1/auth/login`
+* Protected route `/api/v1/users/me` that requires a Bearer token
 
 ### 🔐 JWT Authentication Flow:
+
 1. User logs in → gets a signed JWT token.
-2. Token is sent in headers:  
-```
+2. Token is sent in headers:
 
-Authorization: Bearer <access_token>
-
-````
+   ```
+   Authorization: Bearer <access_token>
+   ```
 3. Protected routes decode the token to verify the user identity.
 
 ---
@@ -115,20 +112,22 @@ Authorization: Bearer <access_token>
 ## 💳 Payment System
 
 ### ✅ Implemented:
-- `/api/v1/payments/` — Create new payment records.
-- `/api/v1/payments/` (GET) — Fetch all payments.
-- Each payment is linked to a `user_id`.
-- Data stored persistently in PostgreSQL.
+
+* `/api/v1/payments/` — Create new payment records.
+* `/api/v1/payments/` (GET) — Fetch all payments.
+* Each payment is linked to a `user_id`.
+* Data stored persistently in PostgreSQL.
 
 ### 🧾 Example Request:
+
 ```json
 {
-"user_id": 1,
-"amount": 199.99,
-"currency": "USD",
-"description": "Monthly VaultPay Premium"
+  "user_id": 1,
+  "amount": 199.99,
+  "currency": "USD",
+  "description": "Monthly VaultPay Premium"
 }
-````
+```
 
 ### ✅ Example Response:
 
@@ -145,7 +144,7 @@ Authorization: Bearer <access_token>
 
 ---
 
-## 🧠 Concepts Learned
+## 🤠 Concepts Learned
 
 | Concept                  | Description                                   |
 | ------------------------ | --------------------------------------------- |
@@ -234,7 +233,7 @@ http://127.0.0.1:8000/docs
 
 ## 📘 Next Roadmap
 
-### 🔜 Phase 2 — Advanced Features
+### 🕸️ Phase 2 — Advanced Features
 
 * [ ] `GET /api/v1/payments/user/{user_id}` → Fetch user-specific payments
 * [ ] Update & Delete Payment APIs
@@ -257,9 +256,6 @@ http://127.0.0.1:8000/docs
 
 > ⚡ *"VaultPay isn’t just a project — it’s a journey of building production-grade systems with real engineering discipline."*
 
-````
-
-Would you like me to create a **short LinkedIn post** summarizing this milestone update next? (You can post it right after pushing.)
 
 
 
